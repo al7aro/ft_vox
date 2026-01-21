@@ -1,9 +1,15 @@
-<img src="https://www.wolframcloud.com/obj/resourcesystem/images/f2d/f2dcb501-fd59-4986-b598-2f30ac56d0ac/6009562e6fbfd7a5.png" align="right" width=150 style="margin:20px"/>
+<img src="./assets/grass.png" align="right" width=150 style="margin:20px"/>
 
-# <a href="https://www.opengl.org"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" align="center" width=150 style="margin:0px"/></a> Template
+# <a href="https://www.opengl.org"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" align="center" width=150 style="margin:0px"/></a> ft_vox
 
 
-<em>Simple <a href="https://www.opengl.org"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" align="center" width=50/></h1></a> template using <a href="https://cmake.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cmake.svg/2048px-Cmake.svg.png" width=25 align="center"/> **cmake**</a>.</em>
+<em>Y me doy el lujazo...</em>
+
+---
+
+# Objective ❓
+
+This project aims to confront **ME** to a graphic project that will be extremely demanding in terms of optimization. I will have to study the characteristics of the voxel worlds, and use them along my infographics knowledge to display a lot of elements on screen. Thus, I will have to study different algo/opti to obtain a SMOOTH render (there are many of them). I will also have to manage my memory and data structures properly to be able to travel in a very, very large universe. Once I have achieved that, I will be ready to get to the next level with a full Minecraft clone, which will be even more demanding.
 
 ---
 
@@ -15,29 +21,13 @@
 - <a href="https://github.com/nothings/stb">**STB**</a>
 - <a href="https://glad.dav1d.de/"> **GLAD**</a>
 
-# How To Use 🧠
+---
 
-- Create a repo from this template 🪧
-- Clone the repo on your machine 🖨️
-```sh
-git clone [repo-url]
-```
-- Init the submodules 🎬
-```sh
-git submodule init
-git submodule update
-```
-- Build the project using <a href="https://cmake.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cmake.svg/2048px-Cmake.svg.png" width=25 align="center"/>:
-  
-  ```sh
-  mkdir build
-  cd build
-  cmake ..
-  ```
+# Progress ⏳
 
-- <a href=""><img src="https://cdn-icons-png.flaticon.com/256/8819/8819105.png" align="center" width=200/></a>
+The current ft_vox isn't but a single black window... 📺
 
 ---
 
 # TODO 🤯
-- [ ] Clean up <a href="https://cmake.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cmake.svg/2048px-Cmake.svg.png" width=25 align="center"/> **cmake**</a> files 🧹
+- [ ] or not TODO, that is the question...
