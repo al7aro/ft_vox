@@ -4,3 +4,4 @@
 #include "input/Input.hpp"
 #include "input/MouseHandler.hpp"
 #include "input/KeyHandler.hpp"
+#include "Shader.hpp"
