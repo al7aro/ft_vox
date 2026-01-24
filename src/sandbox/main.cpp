@@ -17,6 +17,21 @@ int main(void)
     win.AddListenTo(&wasd);
     win.AddListenTo(&mouse);
 
+    ft::ShaderSource sh_src = ft::read_shader_file(SANDBOX_DIRECTORY"/assets/basic.glsl");
+
+    std::vector<ft::Vertex> trig = {
+        {{-0.5, -0.5, 0.0}, {0.0, 0.0}, {1.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0}},
+        {{0.5, -0.5, 0.0},  {0.0, 0.0}, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.0, 0.0}},
+        {{0.0, 0.5, 0.0},   {0.0, 0.0}, {0.0, 0.0, 1.0, 1.0}, {0.0, 0.0, 0.0}},
+    };
+
+    ft::VAO vao;
+    ft::VBO vbo(trig);
+    vao.AddVBO(vbo);
+
+    /* SHADERS */
+    ft::Shader sh(sh_src);
+
     glClearColor(0.9, 0.1, 0.35, 1.0);
     while (!win.IsRunning())
     {
@@ -26,20 +41,9 @@ int main(void)
         glm::vec2 cursor_pos = mouse.GetCursorPos();
         glm::vec2 scroll = mouse.GetScrollOffset();
 
-        // std::cout << "CURSOR: [" << cursor_pos.x << ", " << cursor_pos.y << "]\n";
-        // std::cout << "SCROLL: [" << scroll.x << ", " << scroll.y << "]\n";
-        // if (wasd.IsKeyDown(GLFW_KEY_W))
-        //     std::cout << "W\n";
-        // if (wasd.IsKeyDown(GLFW_KEY_A))
-        //     std::cout << "A\n";
-        // if (wasd.IsKeyDown(GLFW_KEY_S))
-        //     std::cout << "S\n";
-        // if (wasd.IsKeyDown(GLFW_KEY_D))
-        //     std::cout << "D\n";
-        // if (mouse.IsButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-        //     std::cout << "RIGHT BUTTON\n";
-        // if (mouse.IsButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-        //     std::cout << "LEFT BUTTON\n";
+        sh.Bind();
+        vao.Bind();
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         win.SwapBuffers();
     }

@@ -4,4 +4,7 @@
 #include "input/Input.hpp"
 #include "input/MouseHandler.hpp"
 #include "input/KeyHandler.hpp"
-#include "Shader.hpp"
+#include "render/Shader.hpp"
+#include "render/buffers/VAO.hpp"
+#include "render/buffers/VBO.hpp"
+#include "render/buffers/Vertex.hpp"

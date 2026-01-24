@@ -1,7 +1,7 @@
 .vertex
 #version 460 core
 layout (location = 0) in vec3 a_pos;
-layout (location = 1) in vec4 a_col;
+layout (location = 2) in vec4 a_col;
 out vec4 v_col;
 void main()
 {
