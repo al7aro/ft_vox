@@ -8,3 +8,5 @@
 #include "render/buffers/VAO.hpp"
 #include "render/buffers/VBO.hpp"
 #include "render/buffers/Vertex.hpp"
+#include "render/FPSCamera.hpp"
+#include "render/Camera.hpp"
