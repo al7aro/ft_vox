@@ -5,6 +5,8 @@
 #include <sstream>
 
 #include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace ft {
 
@@ -25,6 +27,12 @@ namespace ft {
 
         void Bind();
         void Unbind();
+        void SetUniform(const std::string& name, const glm::mat4& v1) const;
+        void SetUniform(const std::string& name, const glm::vec3& v1) const;
+        void SetUniform(const std::string& name, const float& v1) const;
+        void SetUniform(const std::string& name, const int& v1) const;
+        void SetUniform(const std::string& name, const bool& v1) const;
+
     private:
         Shader(const Shader& o);
         Shader& operator=(const Shader& o);
