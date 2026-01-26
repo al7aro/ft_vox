@@ -48,11 +48,11 @@ namespace ft {
     }
 
     /* INPUT */
-    void Window::AddListenTo(MouseHandler* handler)
+    void Window::AddListenTo(std::shared_ptr<MouseHandler> handler)
     {
         _mouse_handlers.push_back(handler);
     }
-    void Window::AddListenTo(KeyHandler* handler)
+    void Window::AddListenTo(std::shared_ptr<KeyHandler> handler)
     {
         _key_handlers.push_back(handler);
     }
@@ -63,7 +63,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (KeyHandler* h : w->_key_handlers)
+        for (std::shared_ptr<KeyHandler> h : w->_key_handlers)
             h->UpdateState(key, scancode, action, mods);
     }
     void Window::cursor_callback(GLFWwindow* window, double xpos, double ypos)
@@ -71,7 +71,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
             h->UpdateCursorState(xpos, ypos);
     }
     
@@ -80,7 +80,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
             h->UpdateScrollState(xoffset, yoffset);
     }
 
@@ -89,7 +89,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
             h->UpdateButtonState(button, action, mods);
     }
 
