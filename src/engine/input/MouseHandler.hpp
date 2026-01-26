@@ -30,6 +30,7 @@ namespace ft {
         void SetCursorPosition(double xpos, double ypos);
         void UpdateScrollState(double xoffset, double yoffset);
         void UpdateButtonState(int button, int action, int mods);
+        void ResetScrollOffset();
 
         const glm::vec2 GetCursorPos() const;
         const glm::vec2 GetCursorDir() const;

@@ -3,7 +3,7 @@
 namespace ft {
 
     MouseHandler::MouseHandler()
-        : InputHandler(true), _pos(0.0, 0.0), _prev_pos(0.0, 0.0), _dir(0.0), _len(0.0)
+        : InputHandler(true), _pos(0.0, 0.0), _prev_pos(0.0, 0.0), _dir(0.0), _len(0.0), _scroll_offset(0.0)
     {
     }
 
@@ -33,8 +33,8 @@ namespace ft {
 
     void MouseHandler::UpdateScrollState(double xoffset, double yoffset)
     {
-        _scroll_offset.x = static_cast<float>(xoffset);
-        _scroll_offset.y = static_cast<float>(yoffset);
+        _scroll_offset.x += static_cast<float>(xoffset);
+        _scroll_offset.y += static_cast<float>(yoffset);
     }
 
     void MouseHandler::UpdateButtonState(int button, int action, int mods)
@@ -67,6 +67,11 @@ namespace ft {
     const glm::vec2 MouseHandler::GetScrollOffset() const
     {
         return (_scroll_offset);
+    }
+
+    void MouseHandler::ResetScrollOffset()
+    {
+        _scroll_offset = glm::vec2(0.0);
     }
 
     const bool MouseHandler::IsButtonDown(int button) const
