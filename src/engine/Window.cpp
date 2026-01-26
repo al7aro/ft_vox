@@ -3,7 +3,7 @@
 namespace ft {
 
     Window::Window(const std::string& title, int width, int height)
-        : _title(title), _width(width), _height(height)
+        : _title(title), _title_suffix(), _width(width), _height(height)
     {
         _win = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
         if (!_win)
@@ -54,6 +54,12 @@ namespace ft {
     void Window::SetCursorMode(unsigned int value)
     {
         glfwSetInputMode(_win, GLFW_CURSOR, value);
+    }
+
+    void Window::SetTitleSuffix(const std::string& suffix)
+    {
+        _title_suffix = suffix;
+        glfwSetWindowTitle(_win, (_title + _title_suffix).c_str());
     }
 
     /* INPUT */

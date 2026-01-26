@@ -17,7 +17,7 @@ namespace ft {
     {
     private:
         GLFWwindow* _win;
-        std::string _title;
+        std::string _title, _title_suffix;
         int _width, _height;
 
         std::vector<std::shared_ptr<MouseHandler> > _mouse_handlers;
@@ -29,6 +29,8 @@ namespace ft {
         bool IsRunning() const;
         void PollEvents() const;
         void SwapBuffers() const;
+
+        void SetTitleSuffix(const std::string& suffix);
 
         /* Does not terminate GLFW */
         void Destroy() const;
