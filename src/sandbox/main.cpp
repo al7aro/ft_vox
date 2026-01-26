@@ -11,7 +11,7 @@ int main(void)
     if (!glfwInit())
         return (-1);    
     ft::Window win("ft_vox", 500, 500);
-    auto wasd = std::make_shared<ft::KeyHandler>(std::vector<int>({ GLFW_KEY_W, GLFW_KEY_A, GLFW_KEY_S, GLFW_KEY_D }));
+    auto wasd = std::make_shared<ft::KeyHandler>(std::vector<int>({ GLFW_KEY_W, GLFW_KEY_A, GLFW_KEY_S, GLFW_KEY_D, GLFW_KEY_Q, GLFW_KEY_E }));
     auto arrows = std::make_shared<ft::KeyHandler>(std::vector<int>({GLFW_KEY_UP,GLFW_KEY_DOWN, GLFW_KEY_LEFT, GLFW_KEY_RIGHT}));
     auto mouse = std::make_shared<ft::MouseHandler>(std::vector<int>({GLFW_MOUSE_BUTTON_RIGHT, GLFW_MOUSE_BUTTON_LEFT}));
     win.AddListenTo(wasd);
@@ -42,22 +42,31 @@ int main(void)
 
         glClear(GL_COLOR_BUFFER_BIT);
         glm::vec2 cursor_pos = mouse->GetCursorPos();
+        glm::vec2 cursor_prev_pos = mouse->GetCursorPrevPos();
+        glm::vec2 cursor_dir = mouse->GetCursorDir();
         glm::vec2 scroll = mouse->GetScrollOffset();
 
         if (wasd->IsKeyDown(GLFW_KEY_W))
             cam.Move(glm::vec3(0.0, 0.0, -0.01));
         if (wasd->IsKeyDown(GLFW_KEY_S))
             cam.Move(glm::vec3(0.0, 0.0, 0.01));
+        if (wasd->IsKeyDown(GLFW_KEY_A))
+            cam.Move(glm::vec3(-0.01, 0.0, 0.0));
+        if (wasd->IsKeyDown(GLFW_KEY_D))
+            cam.Move(glm::vec3(0.01, 0.0, 0.0));
+        if (wasd->IsKeyDown(GLFW_KEY_E))
+            cam.Move(glm::vec3(0.0, -0.01, 0.0));
+        if (wasd->IsKeyDown(GLFW_KEY_Q))
+            cam.Move(glm::vec3(0.0, 0.01, 0.0));
 
-        if (arrows->IsKeyDown(GLFW_KEY_LEFT))
-            cam.Yaw(0.01);
-        if (arrows->IsKeyDown(GLFW_KEY_RIGHT))
-            cam.Yaw(-0.01);
-        if (arrows->IsKeyDown(GLFW_KEY_UP))
-            cam.Pitch(0.01);
-        if (arrows->IsKeyDown(GLFW_KEY_DOWN))
-            cam.Pitch(-0.01);
-
+        if (mouse->IsButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+        {
+            win.SetCursorMode(GLFW_CURSOR_DISABLED);
+            cam.Yaw(-cursor_dir.x * 0.01);
+            cam.Pitch(-cursor_dir.y * 0.01);
+        }
+        else
+            win.SetCursorMode(GLFW_CURSOR_NORMAL);
         sh.Bind();
         sh.SetUniform("u_proj", cam.GetProjectionMat());
         sh.SetUniform("u_view", cam.GetViewMat());
