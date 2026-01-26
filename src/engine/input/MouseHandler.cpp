@@ -3,12 +3,12 @@
 namespace ft {
 
     MouseHandler::MouseHandler()
-        : InputHandler(true), _pos(0.0, 0.0), _prev_pos(0.0, 0.0)
+        : InputHandler(true), _pos(0.0, 0.0), _prev_pos(0.0, 0.0), _dir(0.0), _len(0.0)
     {
     }
 
     MouseHandler::MouseHandler(const std::vector<int>& active_buttons)
-        : InputHandler(true)
+        : MouseHandler()
     {
         for (int key : active_buttons)
             _active_buttons[key] = false;
@@ -17,10 +17,16 @@ namespace ft {
     MouseHandler::~MouseHandler()
     {}
 
-    void MouseHandler::UpdateCursorState(double xpos, double ypos)
+    void MouseHandler::Update()
     {
+        _dir = _pos - _prev_pos;
+        _len = glm::length(_pos - _prev_pos);
         _prev_pos.x = _pos.x;
         _prev_pos.y = _pos.y;
+    }
+
+    void MouseHandler::SetCursorPosition(double xpos, double ypos)
+    {
         _pos.x = static_cast<float>(xpos);
         _pos.y = static_cast<float>(ypos);
     }
@@ -43,9 +49,19 @@ namespace ft {
         return (_pos);
     }
 
+    const glm::vec2 MouseHandler::GetCursorDir() const
+    {
+        return (_dir);
+    }
+
+    const float MouseHandler::GetCursorLen() const
+    {
+        return (_len);
+    }
+
     const glm::vec2 MouseHandler::GetCursorPrevPos() const
     {
-        return (_prev_pos);
+        return (_pos - _dir);
     }
 
     const glm::vec2 MouseHandler::GetScrollOffset() const

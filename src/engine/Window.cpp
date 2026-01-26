@@ -36,6 +36,8 @@ namespace ft {
     void Window::PollEvents() const
     {
         glfwPollEvents();
+        for (std::shared_ptr<MouseHandler> h : _mouse_handlers)
+            h->Update();
     }
     void Window::SwapBuffers() const
     {
@@ -45,6 +47,11 @@ namespace ft {
     void Window::Destroy() const
     {
         glfwDestroyWindow(_win);
+    }
+
+    void Window::SetCursorMode(unsigned int value)
+    {
+        glfwSetInputMode(_win, GLFW_CURSOR, value);
     }
 
     /* INPUT */
@@ -72,7 +79,7 @@ namespace ft {
         if (!w)
             return ;
         for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
-            h->UpdateCursorState(xpos, ypos);
+            h->SetCursorPosition(xpos, ypos);
     }
     
     void Window::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)

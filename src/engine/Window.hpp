@@ -33,6 +33,8 @@ namespace ft {
         /* Does not terminate GLFW */
         void Destroy() const;
 
+        void SetCursorMode(unsigned int value);
+
         /* INPUT */
         void AddListenTo(std::shared_ptr<MouseHandler> handler);
         void AddListenTo(std::shared_ptr<KeyHandler> handler);
