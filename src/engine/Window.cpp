@@ -20,6 +20,8 @@ namespace ft {
             _win = nullptr;
         }
 
+        glEnable(GL_DEPTH_TEST);
+        
         /* SET CALLBACKS */
         glfwSetWindowUserPointer(_win, this);
         glfwSetKeyCallback(_win, key_callback);
