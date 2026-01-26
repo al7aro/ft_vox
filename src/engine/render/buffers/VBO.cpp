@@ -25,7 +25,7 @@ namespace ft {
         if (cnt == 0)
             cnt = vertices.size();
         unsigned int new_data_size = cnt * sizeof(Vertex);
-        if (_data_offset + new_data_size >= _batch_size)
+        if (_data_offset + new_data_size > _batch_size)
             return; /* NOT ENOUGH SPACE */
         glNamedBufferSubData(_id, _data_offset, new_data_size, &vertices[0]);
         _data_offset += new_data_size;

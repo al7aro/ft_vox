@@ -10,4 +10,5 @@
 #include "render/buffers/Vertex.hpp"
 #include "render/FPSCamera.hpp"
 #include "render/Camera.hpp"
+#include "render/VoxelBatchRenderer.hpp"
 #include "Timer.hpp"
