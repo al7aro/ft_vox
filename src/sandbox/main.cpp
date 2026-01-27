@@ -23,11 +23,14 @@ int main(void)
     ft::FPSCamera cam;
     float cam_speed = 1.0;
     cam.SetPosition(glm::vec3(0.0, 0.0, 1.0));
-    ft::ShaderSource sh_src = ft::read_shader_file(SANDBOX_DIRECTORY"/assets/basic.glsl");
 
     ft::VoxelBatchRenderer renderer;
 
+    /* TEXTURES */
+    ft::TextureSource tex_src = ft::read_image_file(SANDBOX_DIRECTORY"/assets/grass_texture.png");
+    std::shared_ptr<ft::Texture2D> tex = std::make_shared<ft::Texture2D>(tex_src);
     /* SHADERS */
+    ft::ShaderSource sh_src = ft::read_shader_file(SANDBOX_DIRECTORY"/assets/basic.glsl");
     std::shared_ptr<ft::Shader> sh = std::make_shared<ft::Shader>(sh_src);
 
     glClearColor(0.9, 0.1, 0.35, 1.0);
@@ -64,6 +67,8 @@ int main(void)
 /* ********************************************************* */
     
         renderer.Begin(sh);
+        tex->Bind(0);
+        sh->SetUniform("u_texture", 0);
         sh->SetUniform("u_proj", cam.GetProjectionMat());
         sh->SetUniform("u_view", cam.GetViewMat());
         ft::Timer timer_loop;
