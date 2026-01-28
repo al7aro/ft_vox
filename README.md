@@ -30,4 +30,7 @@ The current ft_vox isn't but a single black window... 📺
 ---
 
 # TODO 🤯
-- [ ] or not TODO, that is the question...
+- [ ] Material System to be handled by renderer
+- [ ] Texture System to be handled by renderer
+- [ ] Resource Manager to load files (`.glsl`, `.png`, etc.)
+- [ ] Check for Material/Texture duplicates when adding to rendering
