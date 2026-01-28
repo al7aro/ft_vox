@@ -12,4 +12,5 @@
 #include "render/FPSCamera.hpp"
 #include "render/Camera.hpp"
 #include "render/VoxelBatchRenderer.hpp"
+#include "resource_manager/ResourceManager.hpp"
 #include "Timer.hpp"
