@@ -52,10 +52,22 @@ namespace ft{
         glProgramUniformMatrix4fv(_id, loc, 1, GL_FALSE, glm::value_ptr(v1));
     }
 
+    void Shader::SetUniform(const std::string& name, const glm::vec2& v1) const
+    {
+        unsigned int loc = glGetUniformLocation(_id, name.c_str());
+        glProgramUniform2fv(_id, loc, 1, glm::value_ptr(v1));
+    }
+
     void Shader::SetUniform(const std::string& name, const glm::vec3& v1) const
     {
         unsigned int loc = glGetUniformLocation(_id, name.c_str());
         glProgramUniform3fv(_id, loc, 1, glm::value_ptr(v1));
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::vec4& v1) const
+    {
+        unsigned int loc = glGetUniformLocation(_id, name.c_str());
+        glProgramUniform4fv(_id, loc, 1, glm::value_ptr(v1));
     }
 
     void Shader::SetUniform(const std::string& name, const float& v1) const

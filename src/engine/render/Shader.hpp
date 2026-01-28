@@ -28,7 +28,9 @@ namespace ft {
         void Bind();
         void Unbind();
         void SetUniform(const std::string& name, const glm::mat4& v1) const;
+        void SetUniform(const std::string& name, const glm::vec2& v1) const;
         void SetUniform(const std::string& name, const glm::vec3& v1) const;
+        void SetUniform(const std::string& name, const glm::vec4& v1) const;
         void SetUniform(const std::string& name, const float& v1) const;
         void SetUniform(const std::string& name, const int& v1) const;
         void SetUniform(const std::string& name, const bool& v1) const;
