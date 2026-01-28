@@ -5,7 +5,7 @@
 #include "input/MouseHandler.hpp"
 #include "input/KeyHandler.hpp"
 #include "render/Shader.hpp"
-#include "render/Texture2D.hpp"
+#include "render/Texture2DArray.hpp"
 #include "render/buffers/VAO.hpp"
 #include "render/buffers/VBO.hpp"
 #include "render/buffers/Vertex.hpp"
