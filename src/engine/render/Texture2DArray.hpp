@@ -13,15 +13,23 @@ namespace ft {
         int width, height, chn;
     };
 
-    class Texture2D
+    class Texture2DArray
     {
     private:
         unsigned int _id;
+        int _current_depth;
+        const int _WIDTH, _HEIGHT, _DEPTH;
     public:
-        Texture2D(const TextureSource& src);
-        ~Texture2D();
+        Texture2DArray(int width, int height, int depth = 8);
+        ~Texture2DArray();
 
-        void Bind(unsigned int texture_unit = 0) const;
+        int AddTexture(const TextureSource& src);
+
+        void BindTextureUnit(unsigned int texture_unit = 0) const;
+
+        inline int GetWidth() const { return (_WIDTH); }
+        inline int GetHeight() const { return (_HEIGHT); }
+        inline int GetDepth() const { return (_DEPTH); }
     };
 
     /* TODO: this should be the job of a resource manager */
