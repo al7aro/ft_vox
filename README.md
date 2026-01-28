@@ -21,8 +21,7 @@ This project aims to confront **ME** to a graphic project that will be extremely
 
 ![Progress](/assets//progress.png)
 
-# TODO 🤯
-- [ ] Material System to be handled by renderer
-- [ ] Texture System to be handled by renderer
-- [ ] Resource Manager to load files (`.glsl`, `.png`, etc.)
+# IMMINENT TODO 🤯
 - [ ] Check for Material/Texture duplicates when adding to rendering
+- [ ] Clean UP
+- [ ] Document code structure
