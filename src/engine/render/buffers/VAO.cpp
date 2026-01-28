@@ -44,5 +44,9 @@ namespace ft {
         glEnableVertexArrayAttrib(_id, 3);
         glVertexArrayAttribFormat(_id, 3, 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, normal));
         glVertexArrayAttribBinding(_id, 4, binding_index);
+        /* MATERIAL ID */
+        glEnableVertexArrayAttrib(_id, 4);
+        glVertexArrayAttribFormat(_id, 4, 1, GL_FLOAT, GL_FALSE, offsetof(Vertex, material_id));
+        glVertexArrayAttribBinding(_id, 4, binding_index);
     }
 }
