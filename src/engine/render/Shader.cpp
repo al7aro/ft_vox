@@ -4,18 +4,17 @@
 
 namespace ft{
 
-    Shader::Shader(const ShaderSource& src)
-        : _src(src)
+    Shader::Shader(const std::string& v_src, const std::string& f_src)
     {
         _id = glCreateProgram();
         /* Vertex Shader */
         unsigned int v_sh;
-        v_sh = CreateShader(src.vertex, GL_VERTEX_SHADER);
+        v_sh = CreateShader(v_src, GL_VERTEX_SHADER);
         glAttachShader(_id, v_sh);
         glDeleteShader(v_sh);
         /* Fragment Shader */
         unsigned int f_sh;
-        f_sh = CreateShader(src.fragment, GL_FRAGMENT_SHADER);
+        f_sh = CreateShader(f_src, GL_FRAGMENT_SHADER);
         glAttachShader(_id, f_sh);
         glDeleteShader(f_sh);
 

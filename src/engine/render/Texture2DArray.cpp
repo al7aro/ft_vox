@@ -13,18 +13,18 @@ namespace ft {
         glTextureParameteri(_id, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-        glTextureStorage3D(_id, 1, GL_RGBA8, width, height, depth);
+        glTextureStorage3D(_id, 4, GL_RGBA8, width, height, depth);
     }
 
     Texture2DArray::~Texture2DArray() {}
 
-    int Texture2DArray::AddTexture(const TextureSource& src)
+    int Texture2DArray::AddTexture(void* data, int width, int height)
     {
         if (_current_depth >= _DEPTH)
             return (-1);
-        if (src.width != _WIDTH || src.height != _HEIGHT)
+        if (width != _WIDTH || height != _HEIGHT)
             return (-1);
-        glTextureSubImage3D(_id, 0, 0, 0, _current_depth, _WIDTH, _HEIGHT, 1, GL_RGBA, GL_UNSIGNED_BYTE, src.data);
+        glTextureSubImage3D(_id, 0, 0, 0, _current_depth, _WIDTH, _HEIGHT, 1, GL_RGBA, GL_UNSIGNED_BYTE, data);
         //glGenerateTextureMipmap(_id);
         _current_depth++;
         return (_current_depth - 1);

@@ -7,12 +7,6 @@
 
 namespace ft {
 
-    struct TextureSource
-    {
-        void* data;
-        int width, height, chn;
-    };
-
     class Texture2DArray
     {
     private:
@@ -23,21 +17,15 @@ namespace ft {
         Texture2DArray(int width, int height, int depth = 8);
         ~Texture2DArray();
 
-        int AddTexture(const TextureSource& src);
+        int AddTexture(void* data, int width, int height);
 
         void BindTextureUnit(unsigned int texture_unit = 0) const;
 
         inline int GetWidth() const { return (_WIDTH); }
         inline int GetHeight() const { return (_HEIGHT); }
         inline int GetDepth() const { return (_DEPTH); }
-    };
 
-    /* TODO: this should be the job of a resource manager */
-    static TextureSource read_image_file(const std::string& path)
-    {
-        TextureSource src;
-        src.data = stbi_load(path.c_str(), &src.width, &src.height, &src.chn, 4);
-        return (src);
-    }
+        inline unsigned int GetId() const { return (_id); }
+    };
 
 }
