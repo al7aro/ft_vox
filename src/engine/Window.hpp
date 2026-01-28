@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -16,11 +17,11 @@ namespace ft {
     {
     private:
         GLFWwindow* _win;
-        std::string _title;
+        std::string _title, _title_suffix;
         int _width, _height;
 
-        std::vector<MouseHandler*> _mouse_handlers;
-        std::vector<KeyHandler*> _key_handlers;
+        std::vector<std::shared_ptr<MouseHandler> > _mouse_handlers;
+        std::vector<std::shared_ptr<KeyHandler> > _key_handlers;
     public:
         /* Requires a inited GLFW*/
         Window(const std::string& title, int width, int height);
@@ -29,12 +30,16 @@ namespace ft {
         void PollEvents() const;
         void SwapBuffers() const;
 
+        void SetTitleSuffix(const std::string& suffix);
+
         /* Does not terminate GLFW */
         void Destroy() const;
 
+        void SetCursorMode(unsigned int value);
+
         /* INPUT */
-        void AddListenTo(KeyHandler* handler);
-        void AddListenTo(MouseHandler* handler);
+        void AddListenTo(std::shared_ptr<MouseHandler> handler);
+        void AddListenTo(std::shared_ptr<KeyHandler> handler);
         /* CALLBACKS */
         static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
         static void cursor_callback(GLFWwindow* window, double xpos, double ypos);

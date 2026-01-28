@@ -3,7 +3,7 @@
 namespace ft {
 
     Window::Window(const std::string& title, int width, int height)
-        : _title(title), _width(width), _height(height)
+        : _title(title), _title_suffix(), _width(width), _height(height)
     {
         _win = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
         if (!_win)
@@ -20,6 +20,8 @@ namespace ft {
             _win = nullptr;
         }
 
+        glEnable(GL_DEPTH_TEST);
+        
         /* SET CALLBACKS */
         glfwSetWindowUserPointer(_win, this);
         glfwSetKeyCallback(_win, key_callback);
@@ -36,6 +38,8 @@ namespace ft {
     void Window::PollEvents() const
     {
         glfwPollEvents();
+        for (std::shared_ptr<MouseHandler> h : _mouse_handlers)
+            h->Update();
     }
     void Window::SwapBuffers() const
     {
@@ -47,12 +51,23 @@ namespace ft {
         glfwDestroyWindow(_win);
     }
 
+    void Window::SetCursorMode(unsigned int value)
+    {
+        glfwSetInputMode(_win, GLFW_CURSOR, value);
+    }
+
+    void Window::SetTitleSuffix(const std::string& suffix)
+    {
+        _title_suffix = suffix;
+        glfwSetWindowTitle(_win, (_title + _title_suffix).c_str());
+    }
+
     /* INPUT */
-    void Window::AddListenTo(MouseHandler* handler)
+    void Window::AddListenTo(std::shared_ptr<MouseHandler> handler)
     {
         _mouse_handlers.push_back(handler);
     }
-    void Window::AddListenTo(KeyHandler* handler)
+    void Window::AddListenTo(std::shared_ptr<KeyHandler> handler)
     {
         _key_handlers.push_back(handler);
     }
@@ -63,7 +78,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (KeyHandler* h : w->_key_handlers)
+        for (std::shared_ptr<KeyHandler> h : w->_key_handlers)
             h->UpdateState(key, scancode, action, mods);
     }
     void Window::cursor_callback(GLFWwindow* window, double xpos, double ypos)
@@ -71,8 +86,8 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
-            h->UpdateCursorState(xpos, ypos);
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
+            h->SetCursorPosition(xpos, ypos);
     }
     
     void Window::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -80,7 +95,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
             h->UpdateScrollState(xoffset, yoffset);
     }
 
@@ -89,7 +104,7 @@ namespace ft {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
         if (!w)
             return ;
-        for (MouseHandler* h : w->_mouse_handlers)
+        for (std::shared_ptr<MouseHandler> h : w->_mouse_handlers)
             h->UpdateButtonState(button, action, mods);
     }
 
