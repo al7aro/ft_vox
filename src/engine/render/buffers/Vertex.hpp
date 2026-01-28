@@ -11,6 +11,8 @@ namespace ft {
         glm::vec2 tex_coord;
         glm::vec4 color;
         glm::vec3 normal;
+        float material_id;  /* NEEDED PER VERTEX IN BATCH RENDERING */
+                            /* CAN BE SEND PER INSTANCE IN INSTANCE RENDERING */
     };
 
 }
