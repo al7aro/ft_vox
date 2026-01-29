@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Shader.hpp"
 
 namespace ft{
