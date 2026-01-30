@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../engine/ft_engine.hpp"
+#include "../../engine/ft_engine.hpp"
 
 int main(void)
 {
