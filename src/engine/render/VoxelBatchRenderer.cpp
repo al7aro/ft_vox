@@ -34,7 +34,7 @@ namespace ft {
     {
         std::vector<Vertex> cube = cube_geometry(pos, material_id);
         unsigned int cube_vertices = cube.size();
-        if (sizeof(Vertex) * (_vertex_cnt + cube_vertices) >= MAX_BATCH_SIZE)
+        if (sizeof(Vertex) * (_vertex_cnt + cube_vertices) > MAX_BATCH_SIZE)
             Flush();
         _vbo.AddData(cube);
         _vertex_cnt += cube_vertices;
@@ -42,7 +42,8 @@ namespace ft {
 
     void VoxelBatchRenderer::End()
     {
-        Flush();
+        if (_vertex_cnt)
+            Flush();
     }
 
     void VoxelBatchRenderer::Flush()
@@ -60,22 +61,5 @@ namespace ft {
     {
         return (_batch_cnt);
     }
-
-    //unsigned int VoxelBatchRenderer::AddTextureArray(int width, int height, int depth)
-    //{
-    //    _texture_array = std::make_shared<Texture2DArray>(width, height, depth);
-    //    return (0);
-    //}
-
-    //unsigned int VoxelBatchRenderer::AddMaterial(const glm::vec4& color, const TextureSource& tex_src)
-    //{
-    //    glm::ivec2 texture_id(0, 0);
-    //    if (!_texture_array)
-    //        _texture_array = std::make_shared<Texture2DArray>(tex_src.width, tex_src.height);
-    //    else
-    //        texture_id.y = _texture_array->AddTexture(tex_src.data, tex_src.width, tex_src.height);
-    //    _materials.push_back(Material{color, texture_id});
-    //    return (_materials.size() - 1);
-    //}
 
 }

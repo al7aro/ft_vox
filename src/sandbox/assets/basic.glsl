@@ -3,6 +3,7 @@
 layout (location = 0) in vec3 a_pos;
 layout (location = 1) in vec2 a_tex_coords;
 layout (location = 2) in vec4 a_col;
+layout (location = 3) in vec3 a_normal;
 layout (location = 4) in float a_material_id;
 
 uniform mat4 u_proj = mat4(1.0);
@@ -28,10 +29,10 @@ void main()
 
 struct Material
 {
-    vec3 Ka;   /* ambient */
-    vec3 Kd;   /* diffuse */
-    vec3 Ks;   /* specular */
-    vec3 d;    /* shinyness */
+    vec3 Ka;    /* ambient */
+    vec3 Kd;    /* diffuse */
+    vec3 Ks;    /* specular */
+    float d;    /* shinyness */
 
     vec2 diffuse_map_id;
     vec2 specular_map_id;

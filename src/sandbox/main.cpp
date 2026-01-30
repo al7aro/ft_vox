@@ -29,7 +29,7 @@ int main(void)
     /* CREATE RENDER DATA */
     unsigned int sh = res_manager.CreateShader(SANDBOX_DIRECTORY"/assets/basic.glsl");
     unsigned int grass_mat = res_manager.CreateMaterial(glm::vec4(1.0), SANDBOX_DIRECTORY"/assets/grass_texture.png");
-    res_manager.AddMaterialProperty(grass_mat, ft::Material::KD, glm::vec3(0.1));
+    res_manager.AddMaterialProperty(grass_mat, ft::Material::KD, glm::vec3(0.75));
     unsigned int test_mat = res_manager.CreateMaterial(glm::vec4(1.0), SANDBOX_DIRECTORY"/assets/test_texture.png");
 
     /* FILL RENDER DATA */
