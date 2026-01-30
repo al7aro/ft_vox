@@ -9,7 +9,7 @@
 #include "buffers/VAO.hpp"
 #include "buffers/VBO.hpp"
 #include "Shader.hpp"
-#include "FPSCamera.hpp"
+#include "camera/FPSCamera.hpp"
 #include "Material.hpp"
 #include "Texture2DArray.hpp"
 #include "../resource_manager/Cube.hpp"

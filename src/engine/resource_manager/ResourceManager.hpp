@@ -16,7 +16,7 @@ namespace ft {
     private:
         std::map<unsigned int, std::shared_ptr<Shader> > _shaders;
         std::map<unsigned int, std::shared_ptr<Texture2DArray> > _texures;
-        std::vector<std::shared_ptr<Material> > _materials;
+        std::vector<std::shared_ptr<Material> > _materials; /* TODO: CREATE UBOs */
     public:
         ResourceManager();
         ~ResourceManager();

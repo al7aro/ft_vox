@@ -21,8 +21,13 @@ This project aims to confront **ME** to a graphic project that will be extremely
 
 ![Progress](/assets//progress.png)
 
-# IMMINENT TODO 🤯
-- [ ] **OpenGL DEBUGGING**
-- [ ] Check for Material/Texture duplicates when adding to rendering
+# TODO 🤯
+
+- [ ] Start testing with OCTREES (sandbox side)
+- [ ] Frustrum Culling
+- [ ] Oclussion Culling
+- [ ] Check for Material/Texture duplicates when adding to rendering (just don't use them twice lol)
 - [ ] Clean UP
 - [ ] Document code structure
+- [ ] The renderer returns a FramBuffer
+- [ ] Shadows
